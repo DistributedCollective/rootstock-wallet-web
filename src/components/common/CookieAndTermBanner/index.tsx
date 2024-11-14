@@ -87,7 +87,7 @@ export const CookieAndTermBanner = ({
           <Grid item xs>
             <Typography variant="body2" mb={2}>
               By browsing this page, you accept our{' '}
-              <ExternalLink href={AppRoutes.terms}>Terms & Conditions</ExternalLink> (last updated November 2024) and
+              <ExternalLink href={AppRoutes.terms}>Terms & Conditions</ExternalLink> (last updated October 2024) and
               the use of necessary cookies. <ExternalLink href={AppRoutes.cookie}>Cookie policy</ExternalLink>{' '}
             </Typography>
 
