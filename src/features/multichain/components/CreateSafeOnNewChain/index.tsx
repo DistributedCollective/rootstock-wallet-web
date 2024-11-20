@@ -25,6 +25,7 @@ import { useMemo, useState } from 'react'
 import { useCompatibleNetworks } from '../../hooks/useCompatibleNetworks'
 import { PayMethod } from '@/features/counterfactual/PayNowPayLater'
 import { MULTICHAIN_HELP_ARTICLE } from '@/config/constants'
+import { checksumAddress } from '@/utils/addresses'
 
 type CreateSafeOnNewChainForm = {
   chainId: string
@@ -104,7 +105,7 @@ const ReplaySafeDialog = ({
       // 2. Replay Safe creation and add it to the counterfactual Safes
       replayCounterfactualSafeDeployment(
         selectedChain.chainId,
-        safeAddress,
+        checksumAddress(safeAddress),
         safeCreationData,
         currentName || '',
         dispatch,
@@ -116,7 +117,7 @@ const ReplaySafeDialog = ({
 
       router.push({
         query: {
-          safe: `${selectedChain.shortName}:${safeAddress}`,
+          safe: `${selectedChain.shortName}:${checksumAddress(safeAddress)}`,
         },
       })
 
@@ -125,7 +126,7 @@ const ReplaySafeDialog = ({
       dispatch(
         updateAddressBook(
           [selectedChain.chainId],
-          safeAddress,
+          checksumAddress(safeAddress),
           currentName || '',
           safeCreationData.safeAccountConfig.owners.map((owner) => ({
             address: owner,
