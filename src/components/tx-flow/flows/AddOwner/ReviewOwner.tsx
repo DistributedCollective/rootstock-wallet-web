@@ -31,13 +31,13 @@ export const ReviewOwner = ({ params }: { params: AddOwnerFlowProps | ReplaceOwn
 
     const promise = removedOwner
       ? createSwapOwnerTx(chain, safe.deployed, {
-        newOwnerAddress: checksumAddress(newOwner.address),
-        oldOwnerAddress: checksumAddress(removedOwner.address),
-      })
+          newOwnerAddress: checksumAddress(newOwner.address),
+          oldOwnerAddress: checksumAddress(removedOwner.address),
+        })
       : createAddOwnerTx(chain, safe.deployed, {
-        ownerAddress: checksumAddress(newOwner.address),
-        threshold,
-      })
+          ownerAddress: checksumAddress(newOwner.address),
+          threshold,
+        })
 
     promise.then(setSafeTx).catch(setSafeTxError)
   }, [removedOwner, newOwner, threshold, setSafeTx, setSafeTxError, chain, safe.deployed])

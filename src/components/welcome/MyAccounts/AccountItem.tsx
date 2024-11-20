@@ -76,10 +76,10 @@ const AccountItem = ({ onLinkClick, safeItem }: AccountItemProps) => {
     undeployedSafe
       ? skipToken
       : {
-        chainId: safeItem.chainId,
-        safeAddress: safeItem.address,
-        walletAddress,
-      },
+          chainId: safeItem.chainId,
+          safeAddress: safeItem.address,
+          walletAddress,
+        },
   )
 
   return (
