@@ -2,6 +2,7 @@ import { TypedDataEncoder } from 'ethers'
 import { TxDataRow, generateDataRowValue } from '../TxDataRow'
 import { type SafeTransactionData, type SafeVersion } from '@safe-global/safe-core-sdk-types'
 import { getEip712TxTypes } from '@safe-global/protocol-kit/dist/src/utils'
+import { checksumAddress } from '@/utils/addresses'
 import useSafeAddress from '@/hooks/useSafeAddress'
 import useChainId from '@/hooks/useChainId'
 
@@ -18,7 +19,7 @@ export const SafeTxHashDataRow = ({
   const safeAddress = useSafeAddress()
   const domainHash = TypedDataEncoder.hashDomain({
     chainId,
-    verifyingContract: safeAddress,
+    verifyingContract: checksumAddress(safeAddress),
   })
   const messageHash = safeTxData
     ? TypedDataEncoder.hashStruct('SafeTx', { SafeTx: getEip712TxTypes(safeVersion).SafeTx }, safeTxData)
