@@ -83,7 +83,7 @@ const SrcEthHashInfo = ({
         </div>
       )}
 
-      <Box overflow="hidden" className={onlyName ? css.inline : undefined}>
+      <Box overflow="hidden" className={onlyName ? css.inline : undefined} gap={0.5}>
         {name && (
           <Box title={name} display="flex" alignItems="center" gap={0.5}>
             <Box overflow="hidden" textOverflow="ellipsis">
@@ -104,7 +104,12 @@ const SrcEthHashInfo = ({
           {(!onlyName || !name) && (
             <Box fontWeight="inherit" fontSize="inherit" overflow="hidden" textOverflow="ellipsis">
               {copyAddress ? (
-                <CopyAddressButton prefix={prefix} address={address} copyPrefix={shouldCopyPrefix} trusted={trusted}>
+                <CopyAddressButton
+                  prefix={prefix}
+                  address={address.toLowerCase()}
+                  copyPrefix={shouldCopyPrefix}
+                  trusted={trusted}
+                >
                   {addressElement}
                 </CopyAddressButton>
               ) : (

@@ -4,6 +4,8 @@ import { blo } from 'blo'
 import Skeleton from '@mui/material/Skeleton'
 
 import css from './styles.module.css'
+import { isAddress } from 'ethers'
+import { toChecksumAddress } from '@/utils/rsk-utils'
 
 export interface IdenticonProps {
   address: string
@@ -12,7 +14,11 @@ export interface IdenticonProps {
 
 const Identicon = ({ address, size = 40 }: IdenticonProps): ReactElement => {
   const style = useMemo<CSSProperties | null>(() => {
+    const checksumAddress = toChecksumAddress(address)
     try {
+      if (!isAddress(checksumAddress)) {
+        return null
+      }
       const blockie = blo(address as `0x${string}`)
       return {
         backgroundImage: `url(${blockie})`,
